@@ -10,8 +10,8 @@
   const SEPARATION = 28;
   const AMOUNTX = 70;
   const AMOUNTY = 70;
-  const BASE_COLOR = { r: 178, g: 199, b: 255 }; // light blue #B2C7FF
-  const LIGHT_COLOR = { r: 195, g: 214, b: 255 }; // even lighter #C3D6FF
+  const BASE_COLOR = { r: 255, g: 255, b: 255 }; // white
+  const LIGHT_COLOR = { r: 255, g: 255, b: 255 }; // white
 
   let canvas, ctx;
   let particles = [];
@@ -146,7 +146,7 @@
       ) continue;
 
       const radius = Math.max(0.3, waveScale * proj.scale * 0.7);
-      const alpha = Math.min(0.5, Math.max(0.05, proj.scale * 0.6));
+      const alpha = Math.min(0.25, Math.max(0.03, proj.scale * 0.35));
 
       // Blend between primary and light color based on height
       const blend = (p.y + 60) / 120;
