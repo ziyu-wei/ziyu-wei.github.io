@@ -10,8 +10,8 @@
   const SEPARATION = 28;
   const AMOUNTX = 70;
   const AMOUNTY = 70;
-  const BASE_COLOR = { r: 43, g: 103, b: 119 }; // --color-primary #2B6777
-  const LIGHT_COLOR = { r: 82, g: 171, b: 152 }; // --color-primary-light #52AB98
+  const BASE_COLOR = { r: 178, g: 199, b: 255 }; // light blue #B2C7FF
+  const LIGHT_COLOR = { r: 195, g: 214, b: 255 }; // even lighter #C3D6FF
 
   let canvas, ctx;
   let particles = [];
@@ -125,15 +125,15 @@
       const ix = p.ix;
       const iy = p.iy;
 
-      // Wave function - similar to the reference
+      // Wave function - gentle movement
       p.y =
-        Math.sin((ix + count) * 0.2) * 30 +
-        Math.sin((iy + count) * 0.4) * 30;
+        Math.sin((ix + count) * 0.2) * 12 +
+        Math.sin((iy + count) * 0.4) * 12;
 
       // Scale based on wave
       const waveScale =
-        (Math.sin((ix + count) * 0.3) + 1) * 2 +
-        (Math.sin((iy + count) * 0.5) + 1) * 2;
+        (Math.sin((ix + count) * 0.3) + 1) * 1.2 +
+        (Math.sin((iy + count) * 0.5) + 1) * 1.2;
 
       // Project to 2D
       const proj = project(p.x, p.y, p.z);
@@ -145,8 +145,8 @@
         proj.scale <= 0
       ) continue;
 
-      const radius = Math.max(0.3, waveScale * proj.scale * 0.8);
-      const alpha = Math.min(1, Math.max(0.08, proj.scale * 1.2));
+      const radius = Math.max(0.3, waveScale * proj.scale * 0.7);
+      const alpha = Math.min(0.5, Math.max(0.05, proj.scale * 0.6));
 
       // Blend between primary and light color based on height
       const blend = (p.y + 60) / 120;

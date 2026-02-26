@@ -2,18 +2,18 @@
    CSS Variables & Design Tokens
    ======================================== */
 :root {
-  /* Color Palette - Teal/Slate theme */
-  --color-primary: #2B6777;
-  --color-primary-light: #52AB98;
-  --color-primary-dark: #1A4F5C;
-  --color-accent: #C8D8E4;
-  --color-bg: #F2F2F2;
+  /* Color Palette - Blue theme */
+  --color-primary: #4477FF;
+  --color-primary-light: #6B95FF;
+  --color-primary-dark: #2B5CD9;
+  --color-accent: #D6E2FF;
+  --color-bg: #F4F6FB;
   --color-bg-white: #FFFFFF;
-  --color-bg-dark: #1A1A2E;
+  --color-bg-dark: #141B2E;
   --color-text: #2D3436;
   --color-text-secondary: #636E72;
   --color-text-light: #B2BEC3;
-  --color-border: #DFE6E9;
+  --color-border: #E0E6F0;
 
   /* Typography */
   --font-body: 'Karla', 'Helvetica Neue', Helvetica, sans-serif;
