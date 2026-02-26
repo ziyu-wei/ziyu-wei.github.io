@@ -160,7 +160,7 @@
       ctx.fill();
     }
 
-    count += 0.06;
+    count += 0.015;
   }
 
   // Start when DOM is ready
