@@ -186,9 +186,9 @@ h1, h2, h3, h4, h5, h6 {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: var(--space-3xl) var(--space-md);
+  padding: 18vh var(--space-md) var(--space-3xl);
   background: var(--color-bg-white);
   position: relative;
   overflow: hidden;
