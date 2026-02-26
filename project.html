@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/project.css">
+</head>
+<body class="project-page">
+
+  <!-- Minimal top bar -->
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="index.html" class="logo">ZW</a>
+      <a href="index.html#work" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <!-- Project Content — Notion-style layout -->
+  <article class="project-article">
+
+    <!-- Cover image (full-width) -->
+    <div class="project-cover">
+      <div class="project-cover-placeholder" id="coverImage">
+        <span>Cover Image</span>
+      </div>
+    </div>
+
+    <!-- Notion-style page content -->
+    <div class="project-body">
+
+      <!-- Title block -->
+      <header class="project-header">
+        <h1 class="project-title" id="projectTitle">Project Title</h1>
+        <p class="project-description" id="projectDescription">A brief one-line description of the project goes here.</p>
+      </header>
+
+      <!-- Properties table (Notion-style) -->
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value" id="propDate">2026</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value" id="propCategory">Design</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value" id="propTools">Figma, HTML/CSS</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Role</span>
+          <span class="property-value" id="propRole">Designer & Developer</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Main content area — will be filled from markdown -->
+      <div class="project-content" id="projectContent">
+
+        <h2>Overview</h2>
+        <p>This is where the project overview goes. Describe the problem, context, and what you set out to do. Keep it concise — two to three paragraphs.</p>
+
+        <h2>Process</h2>
+        <p>Walk through your design/development process. What decisions did you make and why? Include images to illustrate key steps.</p>
+
+        <!-- Example image block -->
+        <figure class="content-figure">
+          <div class="figure-placeholder"><span>Image</span></div>
+          <figcaption>Caption describing this image</figcaption>
+        </figure>
+
+        <h2>Key Features</h2>
+        <ul>
+          <li>Feature or insight one</li>
+          <li>Feature or insight two</li>
+          <li>Feature or insight three</li>
+        </ul>
+
+        <!-- Example two-column image layout -->
+        <div class="content-gallery">
+          <figure class="content-figure">
+            <div class="figure-placeholder"><span>Image</span></div>
+          </figure>
+          <figure class="content-figure">
+            <div class="figure-placeholder"><span>Image</span></div>
+          </figure>
+        </div>
+
+        <h2>Outcome</h2>
+        <p>What was the result? Include any metrics, feedback, or reflections. What did you learn?</p>
+
+        <!-- Example callout block (Notion-style) -->
+        <div class="callout">
+          <span class="callout-icon">💡</span>
+          <div class="callout-text">This is a callout block — use it for key takeaways or important notes.</div>
+        </div>
+
+        <h2>Links</h2>
+        <p>
+          <a href="#" class="inline-link">Live Demo</a> &middot;
+          <a href="#" class="inline-link">Source Code</a>
+        </p>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Bottom nav -->
+      <nav class="project-nav">
+        <a href="#" class="project-nav-link prev" id="prevProject">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">Project Name</span>
+        </a>
+        <a href="#" class="project-nav-link next" id="nextProject">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Project Name</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Ziyu Wei</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

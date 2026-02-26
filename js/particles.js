@@ -215,23 +215,11 @@
 
       if (alpha < 0.01 || radius < 0.15) continue;
 
-      // Draw glowing particle with radial gradient
-      if (radius > 0.8) {
-        const grad = ctx.createRadialGradient(proj.x, proj.y, 0, proj.x, proj.y, radius * 2.5);
-        grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
-        grad.addColorStop(0.4, `rgba(255, 255, 255, ${alpha * 0.4})`);
-        grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
-        ctx.beginPath();
-        ctx.arc(proj.x, proj.y, radius * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      } else {
-        // Tiny distant particles: simple dot
-        ctx.beginPath();
-        ctx.arc(proj.x, proj.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.6})`;
-        ctx.fill();
-      }
+      // Pure flat dot — no glow
+      ctx.beginPath();
+      ctx.arc(proj.x, proj.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      ctx.fill();
     }
 
     // Very slow drift
