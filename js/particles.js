@@ -1,17 +1,17 @@
 /* ========================================
-   3D Particle Wave Field
-   Inspired by Three.js wave pattern
-   Pure Canvas 2D with 3D projection
+   3D Particle Nebula Field
+   Perlin noise driven, glow particles,
+   deep perspective, randomized opacity
    ======================================== */
 
 (function () {
   "use strict";
 
-  const SEPARATION = 28;
-  const AMOUNTX = 70;
-  const AMOUNTY = 70;
-  const BASE_COLOR = { r: 255, g: 255, b: 255 }; // white
-  const LIGHT_COLOR = { r: 255, g: 255, b: 255 }; // white
+  // --- Config ---
+  const SEPARATION = 18;
+  const AMOUNTX = 100;
+  const AMOUNTY = 100;
+  const TOTAL = AMOUNTX * AMOUNTY;
 
   let canvas, ctx;
   let particles = [];
@@ -22,23 +22,77 @@
   let animId;
   let isVisible = true;
 
-  // Camera settings
+  // Deeper camera for more dramatic perspective
   const camera = {
-    fov: 500,
-    x: 0,
-    y: 350,
-    z: 380
+    fov: 600,
+    z: 500
   };
 
+  // -----------------------------------------------
+  // Simplex-inspired noise (fast 2D)
+  // -----------------------------------------------
+  const PERM = new Uint8Array(512);
+  const GRAD = [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]];
+  (function seedPerm() {
+    const p = new Uint8Array(256);
+    for (let i = 0; i < 256; i++) p[i] = i;
+    for (let i = 255; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [p[i], p[j]] = [p[j], p[i]];
+    }
+    for (let i = 0; i < 512; i++) PERM[i] = p[i & 255];
+  })();
+
+  function dot2(g, x, y) { return g[0] * x + g[1] * y; }
+
+  function noise2D(x, y) {
+    const F2 = 0.5 * (Math.sqrt(3) - 1);
+    const G2 = (3 - Math.sqrt(3)) / 6;
+    const s = (x + y) * F2;
+    const i = Math.floor(x + s);
+    const j = Math.floor(y + s);
+    const t = (i + j) * G2;
+    const X0 = i - t, Y0 = j - t;
+    const x0 = x - X0, y0 = y - Y0;
+    const i1 = x0 > y0 ? 1 : 0;
+    const j1 = x0 > y0 ? 0 : 1;
+    const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+    const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+    const ii = i & 255, jj = j & 255;
+
+    let n0 = 0, n1 = 0, n2 = 0;
+    let t0 = 0.5 - x0 * x0 - y0 * y0;
+    if (t0 > 0) { t0 *= t0; n0 = t0 * t0 * dot2(GRAD[PERM[ii + PERM[jj]] % 8], x0, y0); }
+    let t1 = 0.5 - x1 * x1 - y1 * y1;
+    if (t1 > 0) { t1 *= t1; n1 = t1 * t1 * dot2(GRAD[PERM[ii + i1 + PERM[jj + j1]] % 8], x1, y1); }
+    let t2 = 0.5 - x2 * x2 - y2 * y2;
+    if (t2 > 0) { t2 *= t2; n2 = t2 * t2 * dot2(GRAD[PERM[ii + 1 + PERM[jj + 1]] % 8], x2, y2); }
+
+    return 70 * (n0 + n1 + n2); // range roughly -1..1
+  }
+
+  // Multi-octave fractal noise
+  function fbm(x, y, octaves) {
+    let value = 0, amp = 1, freq = 1, max = 0;
+    for (let i = 0; i < octaves; i++) {
+      value += noise2D(x * freq, y * freq) * amp;
+      max += amp;
+      amp *= 0.5;
+      freq *= 2;
+    }
+    return value / max;
+  }
+
+  // -----------------------------------------------
+  // Init
+  // -----------------------------------------------
   function init() {
     canvas = document.getElementById("particleCanvas");
     if (!canvas) return;
-
     ctx = canvas.getContext("2d");
-
     resize();
 
-    // Build grid
+    // Build particle grid with random per-particle properties
     for (let ix = 0; ix < AMOUNTX; ix++) {
       for (let iy = 0; iy < AMOUNTY; iy++) {
         particles.push({
@@ -46,7 +100,12 @@
           y: 0,
           z: iy * SEPARATION - (AMOUNTY * SEPARATION) / 2,
           ix: ix,
-          iy: iy
+          iy: iy,
+          // Randomized base opacity between 0.15 and 0.55
+          baseAlpha: 0.15 + Math.random() * 0.4,
+          // Slight random offset for organic feel
+          noiseOffsetX: Math.random() * 100,
+          noiseOffsetY: Math.random() * 100
         });
       }
     }
@@ -55,7 +114,6 @@
     document.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("resize", resize, false);
 
-    // Intersection observer to pause when not visible
     const observer = new IntersectionObserver(
       (entries) => {
         isVisible = entries[0].isIntersecting;
@@ -75,7 +133,7 @@
     canvas.height = height * window.devicePixelRatio;
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
   }
 
   function onMouseMove(e) {
@@ -90,25 +148,26 @@
     }
   }
 
-  // Project 3D point to 2D screen
+  // 3D → 2D projection with deep perspective
   function project(x, y, z) {
     const px = x - camX;
     const py = y - camY;
-    const pz = z;
-    const scale = camera.fov / (camera.fov + pz + camera.z);
+    const depth = z + camera.z;
+    if (depth <= 0) return null;
+    const scale = camera.fov / depth;
     return {
       x: px * scale + width / 2,
       y: py * scale + height / 2,
-      scale: scale
+      scale: scale,
+      depth: depth
     };
   }
 
+  // -----------------------------------------------
+  // Animation loop
+  // -----------------------------------------------
   function animate() {
-    if (!isVisible) {
-      animId = null;
-      return;
-    }
-
+    if (!isVisible) { animId = null; return; }
     animId = requestAnimationFrame(animate);
     render();
   }
@@ -116,54 +175,72 @@
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Smooth camera follow
-    camX += (mouseX * 0.15 - camX) * 0.02;
-    camY += (-mouseY * 0.1 - 80 - camY) * 0.02;
+    // Slow smooth camera follow
+    camX += (mouseX * 0.08 - camX) * 0.015;
+    camY += (-mouseY * 0.06 - 50 - camY) * 0.015;
 
-    for (let i = 0; i < particles.length; i++) {
+    const time = count * 0.4;
+
+    for (let i = 0; i < TOTAL; i++) {
       const p = particles[i];
       const ix = p.ix;
       const iy = p.iy;
 
-      // Wave function - gentle movement
-      p.y =
-        Math.sin((ix + count) * 0.2) * 12 +
-        Math.sin((iy + count) * 0.4) * 12;
+      // Multi-layered organic wave using Perlin noise + sine
+      const nx = (ix + p.noiseOffsetX) * 0.025;
+      const ny = (iy + p.noiseOffsetY) * 0.025;
+      const noiseVal = fbm(nx + time * 0.15, ny + time * 0.12, 3);
 
-      // Scale based on wave
-      const waveScale =
-        (Math.sin((ix + count) * 0.3) + 1) * 1.2 +
-        (Math.sin((iy + count) * 0.5) + 1) * 1.2;
+      p.y =
+        noiseVal * 25 +
+        Math.sin((ix * 0.15) + time * 0.3) * 8 +
+        Math.sin((iy * 0.12) + time * 0.25) * 6;
 
       // Project to 2D
       const proj = project(p.x, p.y, p.z);
+      if (!proj) continue;
 
-      // Only render if on screen
-      if (
-        proj.x < -20 || proj.x > width + 20 ||
-        proj.y < -20 || proj.y > height + 20 ||
-        proj.scale <= 0
-      ) continue;
+      // Cull offscreen
+      if (proj.x < -30 || proj.x > width + 30 || proj.y < -30 || proj.y > height + 30) continue;
 
-      const radius = Math.max(0.3, waveScale * proj.scale * 0.7);
-      const alpha = Math.min(0.25, Math.max(0.03, proj.scale * 0.35));
+      // Depth-based sizing: near = larger, far = tiny dust
+      const depthFactor = Math.max(0, Math.min(1, (camera.z + 400 - p.z) / 1200));
+      const baseRadius = 0.4 + depthFactor * 1.8;
+      const waveBoost = (Math.sin((ix + count * 2) * 0.2) + 1) * 0.3;
+      const radius = Math.max(0.2, (baseRadius + waveBoost) * proj.scale);
 
-      // Blend between primary and light color based on height
-      const blend = (p.y + 60) / 120;
-      const r = Math.round(BASE_COLOR.r + (LIGHT_COLOR.r - BASE_COLOR.r) * blend);
-      const g = Math.round(BASE_COLOR.g + (LIGHT_COLOR.g - BASE_COLOR.g) * blend);
-      const b = Math.round(BASE_COLOR.b + (LIGHT_COLOR.b - BASE_COLOR.b) * blend);
+      // Depth-based alpha: far particles are dimmer
+      const depthAlpha = depthFactor * depthFactor;
+      const alpha = p.baseAlpha * depthAlpha * Math.min(1, proj.scale * 1.5);
 
-      ctx.beginPath();
-      ctx.arc(proj.x, proj.y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-      ctx.fill();
+      if (alpha < 0.01 || radius < 0.15) continue;
+
+      // Draw glowing particle with radial gradient
+      if (radius > 0.8) {
+        const grad = ctx.createRadialGradient(proj.x, proj.y, 0, proj.x, proj.y, radius * 2.5);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+        grad.addColorStop(0.4, `rgba(255, 255, 255, ${alpha * 0.4})`);
+        grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, radius * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      } else {
+        // Tiny distant particles: simple dot
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.6})`;
+        ctx.fill();
+      }
     }
 
-    count += 0.015;
+    // Very slow drift
+    count += 0.008;
   }
 
-  // Start when DOM is ready
+  // -----------------------------------------------
+  // Boot
+  // -----------------------------------------------
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
