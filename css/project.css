@@ -396,6 +396,25 @@
 }
 
 /* ========================================
+   Embed Container (iframe)
+   ======================================== */
+.embed-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 24px 0;
+}
+
+.embed-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================================
    Responsive
    ======================================== */
 @media (max-width: 768px) {

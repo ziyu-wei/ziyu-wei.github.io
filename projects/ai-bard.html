@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 吟游诗人 — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body class="project-page">
+
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ZW</a>
+      <a href="../index.html" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <article class="project-article">
+
+    <div class="project-cover">
+      <img src="../images/projects/ai-bard/cover.png" alt="AI 吟游诗人">
+    </div>
+
+    <div class="project-body">
+
+      <header class="project-header">
+        <h1 class="project-title">AI 吟游诗人</h1>
+        <p class="project-description">具身智能 AI 旅伴——让机器人看、听、动、感知环境的物理存在</p>
+      </header>
+
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value">2026</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Duration</span>
+          <span class="property-value">3 months (ongoing)</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value">AI Hardware Innovation</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value">Jetson, Python, OpenClaw, YOLO</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Context</span>
+          <span class="property-value">Internship @ Seeed Studio</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="project-content">
+
+        <div class="callout">
+          <span class="callout-icon">🚧</span>
+          <div class="callout-text">This project is still in progress. Results described below are expected outcomes.</div>
+        </div>
+
+        <h2>Situation</h2>
+        <p>在 Seeed Studio 的智能房车（Chaihuo MCV）项目中，团队希望将开源 AI Agent（OpenClaw）与物理机器人（Reachy Mini）和车载智能家居系统（Home Assistant）打通，打造一个具备"具身智能"的 RV 智能助手——让 AI 不再只是屏幕上的对话框，而是一个能看、能听、能动、能主动感知环境的物理存在。</p>
+
+        <h2>Task</h2>
+        <p>负责探索并搭建初步 Demo 验证系统的架构：</p>
+        <p>将 OpenClaw 作为 AI 决策大脑部署在 Jetson 边缘设备上，连接 Reachy Mini 机器人作为交互终端，并接入房车内的 Home Assistant 智能家居生态，实现语音驱动的环境感知与设备控制闭环。</p>
+        <p>探索创新交互场景，如让机器人主动观察用户日常并生成第一人称视角的"AI 旅行日记"。</p>
+
+        <h2>Action</h2>
+        <ul>
+          <li><strong>✅ 已完成：</strong>OpenClaw + Reachy Mini 的全链路部署与调试，打通了"语音输入 → OpenAI Realtime API 转写 → DeepSeek 模型推理 → Skill 执行 → 语音合成输出"的完整交互链路。</li>
+          <li><strong>🚧 进行中：</strong>设计"AI 日记"功能的产品方案——通过定时拍照、环境音采集与持久化记忆，让机器人在一天结束时自动生成带有个人视角的旅途日记。</li>
+          <li><strong>🚧 进行中：</strong>为智能家居控制编写 OpenClaw Skill，实现通过自然语言控制车内灯光、空调等设备。</li>
+        </ul>
+
+        <h2>Expected Result</h2>
+        <ul>
+          <li>搭建从 AI 推理到物理交互的端到端原型系统。</li>
+          <li>验证开源 AI Agent 在具身智能场景下的可行性。</li>
+          <li>为 Chaihuo MCV 项目提供了"AI 旅伴"的核心叙事方向，并为后续的社媒内容运营（小红书）提供了差异化的传播素材。</li>
+        </ul>
+
+        <h2>Lofi UI Workflow</h2>
+        <p>Interactive storyboard prototype:</p>
+        <!-- Embedded iframe with link to open in new tab -->
+        <div class="embed-container">
+          <iframe src="https://reachy-mini-storyboard-690124606393.us-west1.run.app/" loading="lazy"></iframe>
+        </div>
+        <p style="margin-top: 0.5rem;">
+          <a href="https://reachy-mini-storyboard-690124606393.us-west1.run.app/" target="_blank" class="inline-link">Open in new window &rarr;</a>
+        </p>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="project-nav">
+        <a href="breath-flow.html" class="project-nav-link prev">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">息壤 Breath Flow</span>
+        </a>
+        <a href="#" class="project-nav-link next" style="visibility: hidden;">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Coming soon</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <footer class="footer" style="background:#050505; border-top:1px solid rgba(255,255,255,0.06); padding:2rem 0;">
+    <div style="text-align:center;">
+      <span style="font-size:0.65rem; color:rgba(255,255,255,0.15); letter-spacing:0.1em;">&copy; 2026 Ziyu Wei</span>
+    </div>
+  </footer>
+
+</body>
+</html>
