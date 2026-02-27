@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmotivChat — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body class="project-page">
+
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ZW</a>
+      <a href="../index.html" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <article class="project-article">
+
+    <div class="project-cover">
+      <img src="../images/projects/emotiv-chat/cover.png" alt="EmotivChat">
+    </div>
+
+    <div class="project-body">
+
+      <header class="project-header">
+        <h1 class="project-title">EmotivChat</h1>
+        <p class="project-description">通过脑机接口技术，将脑电波转换为情绪信号反馈给 AI，让 AI 生成用户更喜欢的内容</p>
+      </header>
+
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value">2025</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Duration</span>
+          <span class="property-value">8 months</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value">HCI Research</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value">Emotiv EPOC+, Python, Cursor, ChatGPT API</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Team</span>
+          <span class="property-value">Individual</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="project-content">
+
+        <h2>Research Background</h2>
+        <p>人与人交流时，可以从表情、肢体语言等多维度 context 获得情感信息，但 AI 不行——当前人与 AI 的交流仅依赖文字，是单维度的 context。</p>
+        <p>如果用脑机接口捕捉用户的<strong>实时情感</strong>，传输给 AI，AI 也许能够生成用户更喜欢的内容，与用户产生"共鸣"。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/overview.png" alt="Research background">
+          <figcaption>研究背景与三个研究问题</figcaption>
+        </figure>
+
+        <h2>System Design</h2>
+        <p><strong>Human in the Loop</strong> — 构建脑电自适应 Human-AI 协作系统：</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/slide2.png" alt="System design">
+          <figcaption>1. 实时脑信号采集 → 2. Python 处理情绪判定 → 3. Gemini 生成内容 → 4. 用户反馈闭环</figcaption>
+        </figure>
+
+        <h2>Equipment Setup</h2>
+        <p>使用 Emotiv EPOC+（14 通道，2Hz PM 输出）采集脑电信号，实时分类情绪维度（Relaxation, Interest, Stress, Excitement, Engagement, Attention）。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/slide1.png" alt="Equipment setup">
+          <figcaption>设备准备与情绪分类维度</figcaption>
+        </figure>
+
+        <h2>Results</h2>
+        <p><strong>Study A：与 AI 共创图片</strong>（31 人）— 接收 EEG 情绪信号后，AI 生成图片更快让用户满意。迭代效率提升 30%，峰值兴奋度提升 7.5%，满意度提升 23%。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/slide3.png" alt="Study A results">
+          <figcaption>客观信号与主观感受的对比分析</figcaption>
+        </figure>
+
+        <p>访谈数据揭示：捕捉到脑电波情绪信号后，AI 在内容策略上的迭代更连续。EEG 实验组关键词——顺滑、连续、满意、有情感；对照组关键词——跳跃、重置、返工、遗忘。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/slide4.png" alt="Interview insights">
+          <figcaption>访谈数据关键词对比</figcaption>
+        </figure>
+
+        <p><strong>Study B：与 AI 头脑风暴</strong>（29 人）— 在创意协助、合作感方面，实验组评分显著提升。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/emotiv-chat/slide5.png" alt="Study B results">
+          <figcaption>多种实验方案验证同一结论</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="project-nav">
+        <a href="echo-of-water.html" class="project-nav-link prev">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">Echoes of Water</span>
+        </a>
+        <a href="#" class="project-nav-link next" style="visibility: hidden;">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Coming soon</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <footer class="footer" style="background:#050505; border-top:1px solid rgba(255,255,255,0.06); padding:2rem 0;">
+    <div style="text-align:center;">
+      <span style="font-size:0.65rem; color:rgba(255,255,255,0.15); letter-spacing:0.1em;">&copy; 2026 Ziyu Wei</span>
+    </div>
+  </footer>
+
+</body>
+</html>
