@@ -63,6 +63,12 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
   padding: 0 1.5rem;
 }
 
+/* Work section gets a wider column for large project cards */
+.work .section-column {
+  max-width: 960px;
+  padding: 0 2.5rem;
+}
+
 .content-box {
   margin-bottom: 3.5rem;
 }
@@ -381,18 +387,19 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 }
 
 /* ========================================
-   Project Grid (3-column like shu)
+   Project Grid (2-column large cards)
    ======================================== */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin: 2rem -1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 2rem 0;
 }
 
 .project-item {
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .project-item.hidden { display: none; }
@@ -401,13 +408,14 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
   display: block;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .thumbnail img,
 .thumb-placeholder {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 350ms ease;
 }
@@ -418,19 +426,20 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 
 .thumbnail:hover img,
 .thumbnail:hover .thumb-placeholder {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.35);
   opacity: 0;
   transition: opacity 0.3s;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  padding: 24px;
   z-index: 1;
+  border-radius: 12px;
 }
 
 .thumbnail:hover .overlay {
@@ -439,16 +448,17 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 
 .project-info p {
   color: #fff;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 400;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1.5;
 }
 
 .project-info span {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.65);
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.03em;
+  font-weight: 300;
 }
 
 /* ========================================
@@ -457,12 +467,13 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 @media (max-width: 768px) {
   .project-grid {
     grid-template-columns: 1fr;
-    margin: 2rem 0;
+    gap: 16px;
   }
 
   .hero__social { display: none; }
 
   .section-column { padding: 0 1.25rem; }
+  .work .section-column { max-width: 100%; padding: 0 1.25rem; }
 }
 
 @media (max-width: 576px) {
