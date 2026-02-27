@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>息壤 Breath Flow — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body class="project-page">
+
+  <!-- Top bar -->
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ZW</a>
+      <a href="../index.html#work" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <article class="project-article">
+
+    <!-- Cover -->
+    <div class="project-cover">
+      <img src="../images/projects/breath-flow/cover.png" alt="息壤 Breath Flow">
+    </div>
+
+    <!-- Content -->
+    <div class="project-body">
+
+      <header class="project-header">
+        <h1 class="project-title">息壤 Breath Flow</h1>
+        <p class="project-description">探索人类生理信号与数字生命边界的 VR 生物反馈互动装置</p>
+      </header>
+
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value">2026</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Duration</span>
+          <span class="property-value">1 week</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value">Interactive Experience</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value">Arduino, Unity, Rhino, Claude Code</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tags</span>
+          <span class="property-value">AR/VR &middot; Individual</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="project-content">
+
+        <h2>Introduction</h2>
+        <p><strong>息壤 (Breath Flow)</strong> 是一项探索人类生理信号与数字生命边界的 VR 生物反馈互动装置。</p>
+        <p>项目以中国神话中自生自长的"息壤"为灵感，将<strong>呼吸</strong>——人类最原始的生存信号，转化为虚拟世界的生长动力。用户通过声音传感器捕捉吹气频率，实时驱动 Unity 中的 Shader 动态参数，让花朵呼吸间破土、抽芽、直至盛开。</p>
+        <p>我们旨在快节奏的焦虑时代，利用生物反馈疗法（Biofeedback），通过视觉上的"生命绽放"诱导用户主动放慢呼吸节奏，在人与自然的数字连接中，重拾内心的秩序与平静。</p>
+
+        <h2>Ideation</h2>
+        <figure class="content-figure">
+          <img src="../images/projects/breath-flow/ideation.png" alt="Ideation">
+        </figure>
+
+        <h2>Lofi UI Workflow</h2>
+        <figure class="content-figure">
+          <img src="../images/projects/breath-flow/workflow.png" alt="UI Workflow">
+        </figure>
+
+        <h2>Working Prototype</h2>
+
+        <p>选择拾音传感器，使用 Arduino 追踪呼吸声音变化</p>
+        <figure class="content-figure">
+          <img src="../images/projects/breath-flow/data1.gif" alt="Arduino sensor data tracking">
+          <figcaption>Arduino 拾音传感器追踪呼吸数据</figcaption>
+        </figure>
+
+        <p>在 Unity 中测试</p>
+        <figure class="content-figure">
+          <img src="../images/projects/breath-flow/unity1.gif" alt="Unity prototype testing">
+          <figcaption>Unity Shader 实时响应呼吸信号</figcaption>
+        </figure>
+
+        <!-- Two-column layout -->
+        <div class="content-gallery">
+          <figure class="content-figure">
+            <img src="../images/projects/breath-flow/pico.gif" alt="Pico VR headset testing">
+          </figure>
+          <figure class="content-figure">
+            <img src="../images/projects/breath-flow/unity2.gif" alt="Unity final effect">
+          </figure>
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="project-nav">
+        <a href="../index.html#work" class="project-nav-link prev">
+          <span class="nav-label">&larr; Back</span>
+          <span class="nav-title">All Projects</span>
+        </a>
+        <a href="#" class="project-nav-link next" style="visibility: hidden;">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Coming soon</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Ziyu Wei</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
