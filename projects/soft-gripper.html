@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMA Soft Gripper — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body class="project-page">
+
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ZW</a>
+      <a href="../index.html" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <article class="project-article">
+
+    <div class="project-cover">
+      <img src="../images/projects/soft-gripper/cover.png" alt="SMA Soft Gripper">
+    </div>
+
+    <div class="project-body">
+
+      <header class="project-header">
+        <h1 class="project-title">SMA 软体机器人夹爪</h1>
+        <p class="project-description">基于形状记忆合金与硅胶的新型软体夹爪——集成压敏反馈的自适应抓取</p>
+      </header>
+
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value">2024</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Duration</span>
+          <span class="property-value">3 months</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value">Interactive Robot</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value">Arduino, Rhino / Grasshopper, SMA, Python</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Team</span>
+          <span class="property-value">Group Project</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="project-content">
+
+        <h2>Concept</h2>
+        <p><strong>SMA (Shape-Memory Alloy)</strong> 是一种在特定温度下恢复记忆形态的新材料。我们将 SMA 丝嵌入硅胶结构中，通过通电加热驱动夹爪弯曲，实现柔性抓取。后续集成压敏传感器，通过力反馈实时调整电压，防止 SMA 过热疲劳。</p>
+
+        <h2>Fabrication</h2>
+
+        <div class="content-gallery">
+          <figure class="content-figure">
+            <img src="../images/projects/soft-gripper/silicone.png" alt="Silicone gripper finger">
+            <figcaption>Grasshopper 参数化设计 + 硅胶浇注成型</figcaption>
+          </figure>
+          <figure class="content-figure">
+            <img src="../images/projects/soft-gripper/sma.png" alt="SMA wire shaping">
+            <figcaption>SMA 丝形态固定（退火定型）</figcaption>
+          </figure>
+        </div>
+
+        <h2>Sensing & Control</h2>
+        <p>压敏传感器（FSR）接入 Arduino，实时检测夹爪抓取力度。Python 脚本根据传感器读数动态调节 SMA 加热电压——力度达到阈值时自动降压，实现闭环控制。</p>
+
+        <figure class="content-figure">
+          <img src="../images/projects/soft-gripper/sensor.png" alt="Pressure sensor with Arduino">
+          <figcaption>Arduino + FSR 压敏传感器——力反馈闭环</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="project-nav">
+        <a href="muna.html" class="project-nav-link prev">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">MUNA</span>
+        </a>
+        <a href="#" class="project-nav-link next" style="visibility: hidden;">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Coming soon</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <footer class="footer" style="background:#050505; border-top:1px solid rgba(255,255,255,0.06); padding:2rem 0;">
+    <div style="text-align:center;">
+      <span style="font-size:0.65rem; color:rgba(255,255,255,0.15); letter-spacing:0.1em;">&copy; 2026 Ziyu Wei</span>
+    </div>
+  </footer>
+
+</body>
+</html>
