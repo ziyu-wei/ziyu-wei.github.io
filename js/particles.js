@@ -203,11 +203,11 @@
       // Cull offscreen
       if (proj.x < -30 || proj.x > width + 30 || proj.y < -30 || proj.y > height + 30) continue;
 
-      // Depth-based sizing: near = larger, far = tiny dust
+      // Depth-based sizing: 1/10 of original — tiny dust particles
       const depthFactor = Math.max(0, Math.min(1, (camera.z + 400 - p.z) / 1200));
-      const baseRadius = 0.4 + depthFactor * 1.8;
-      const waveBoost = (Math.sin((ix + count * 2) * 0.2) + 1) * 0.3;
-      const radius = Math.max(0.2, (baseRadius + waveBoost) * proj.scale);
+      const baseRadius = 0.04 + depthFactor * 0.18;
+      const waveBoost = (Math.sin((ix + count * 2) * 0.2) + 1) * 0.03;
+      const radius = Math.max(0.05, (baseRadius + waveBoost) * proj.scale);
 
       // Depth-based alpha: far particles are dimmer
       const depthAlpha = depthFactor * depthFactor;
@@ -218,7 +218,7 @@
       // Pure flat dot — no glow
       ctx.beginPath();
       ctx.arc(proj.x, proj.y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      ctx.fillStyle = `rgba(217, 225, 233, ${alpha})`;
       ctx.fill();
     }
 

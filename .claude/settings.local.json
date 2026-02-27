@@ -4,7 +4,8 @@
       "Bash(cd:*)",
       "Bash(cd \"D:/tud/portfolio\" && git push origin main 2>&1)",
       "Bash(curl:*)",
-      "Bash(cd \"D:/tud/portfolio\" && git push origin main:gh-pages --force 2>&1)"
+      "Bash(cd \"D:/tud/portfolio\" && git push origin main:gh-pages --force 2>&1)",
+      "Bash(cd \"D:/tud/portfolio\" && git push origin main 2>&1 && git push origin main:gh-pages --force 2>&1)"
     ]
   }
 }

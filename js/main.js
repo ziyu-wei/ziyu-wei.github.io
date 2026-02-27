@@ -1,131 +1,101 @@
 /* ========================================
-   Portfolio - Main JavaScript
+   Main — Hero / About / Work interactions
+   Mimics shuwithu.github.io behavior
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-  initFilters();
-  initScrollAnimations();
-  initProjectCards();
-  initHeaderScroll();
-});
+  const hero = document.getElementById('hero');
+  const about = document.getElementById('about');
+  const work = document.getElementById('work');
+  const triggerAbout = document.getElementById('triggerAbout');
+  const triggerWork = document.getElementById('triggerWork');
+  const closeAbout = document.getElementById('closeAbout');
+  const closeWork = document.getElementById('closeWork');
 
-/* ----------------------------------------
-   Smooth Navigation
-   ---------------------------------------- */
-function initNavigation() {
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
+  let isAnimating = false;
+
+  // --- Open About (slides down from top) ---
+  triggerAbout.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isAnimating) return;
+    isAnimating = true;
+
+    about.classList.remove('closing');
+    about.classList.add('active');
+    hero.classList.remove('push-down-return');
+    hero.classList.add('push-down');
+
+    setTimeout(() => { isAnimating = false; }, 550);
   });
-}
 
-/* ----------------------------------------
-   Header: transparent → solid on scroll
-   ---------------------------------------- */
-function initHeaderScroll() {
-  const header = document.querySelector('.header');
-  const onScroll = () => {
-    if (window.scrollY > 80) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  };
-  window.addEventListener('scroll', throttle(onScroll, 50));
-  onScroll();
-}
+  // --- Close About ---
+  closeAbout.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isAnimating) return;
+    isAnimating = true;
 
-/* ----------------------------------------
-   Project Filter System
-   ---------------------------------------- */
-function initFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+    about.classList.remove('active');
+    about.classList.add('closing');
+    hero.classList.remove('push-down');
+    hero.classList.add('push-down-return');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    setTimeout(() => {
+      about.classList.remove('closing');
+      isAnimating = false;
+    }, 550);
+  });
 
-      const filter = btn.getAttribute('data-filter');
+  // --- Open Work (slides up from bottom) ---
+  triggerWork.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isAnimating) return;
+    isAnimating = true;
 
-      cards.forEach((card, index) => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.classList.remove('hidden');
-          card.style.animation = 'none';
-          card.offsetHeight;
-          card.style.animation = `fadeUp 0.5s cubic-bezier(0.25,0.1,0.25,1) forwards ${index * 0.06}s`;
+    work.classList.remove('closing');
+    work.classList.add('active');
+    hero.classList.remove('push-up-return');
+    hero.classList.add('push-up');
+
+    setTimeout(() => { isAnimating = false; }, 550);
+  });
+
+  // --- Close Work ---
+  closeWork.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isAnimating) return;
+    isAnimating = true;
+
+    work.classList.remove('active');
+    work.classList.add('closing');
+    hero.classList.remove('push-up');
+    hero.classList.add('push-up-return');
+
+    setTimeout(() => {
+      work.classList.remove('closing');
+      isAnimating = false;
+    }, 550);
+  });
+
+  // --- Filter system ---
+  const filterItems = document.querySelectorAll('.filters li');
+  const projectItems = document.querySelectorAll('.project-item');
+
+  filterItems.forEach(item => {
+    item.addEventListener('click', () => {
+      filterItems.forEach(f => f.classList.remove('is-checked'));
+      item.classList.add('is-checked');
+
+      const filter = item.getAttribute('data-filter');
+
+      projectItems.forEach(p => {
+        if (filter === 'all' || p.classList.contains(filter)) {
+          p.classList.remove('hidden');
+          p.classList.add('show');
         } else {
-          card.classList.add('hidden');
+          p.classList.remove('show');
+          p.classList.add('hidden');
         }
       });
     });
   });
-}
-
-/* ----------------------------------------
-   Scroll-triggered Animations
-   ---------------------------------------- */
-function initScrollAnimations() {
-  const els = document.querySelectorAll('.section-title, .filters');
-  els.forEach(el => el.classList.add('fade-in'));
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  els.forEach(el => observer.observe(el));
-}
-
-/* ----------------------------------------
-   Project Card Animations
-   ---------------------------------------- */
-function initProjectCards() {
-  const cards = document.querySelectorAll('.project-card');
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('animate-in'), index * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
-  );
-
-  cards.forEach(card => observer.observe(card));
-}
-
-/* ----------------------------------------
-   Utility: Throttle
-   ---------------------------------------- */
-function throttle(fn, wait) {
-  let last = 0;
-  return function (...args) {
-    const now = Date.now();
-    if (now - last >= wait) {
-      fn(...args);
-      last = now;
-    }
-  };
-}
+});
