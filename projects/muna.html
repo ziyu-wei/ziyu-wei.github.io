@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUNA Cervical Speculum — Ziyu Wei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body class="project-page">
+
+  <header class="header scrolled">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ZW</a>
+      <a href="../index.html" class="back-link">&larr; All Projects</a>
+    </div>
+  </header>
+
+  <article class="project-article">
+
+    <div class="project-cover">
+      <img src="../images/projects/muna/cover.png" alt="MUNA Cervical Speculum">
+    </div>
+
+    <div class="project-body">
+
+      <header class="project-header">
+        <h1 class="project-title">MUNA</h1>
+        <p class="project-description">为喀麦隆医护人员设计的 AI 辅助宫颈癌筛查窥镜——从概念到可工作原型</p>
+      </header>
+
+      <div class="project-properties">
+        <div class="property-row">
+          <span class="property-label">Date</span>
+          <span class="property-value">2024</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Duration</span>
+          <span class="property-value">6 months</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Category</span>
+          <span class="property-value">Medical Product Design</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Tools</span>
+          <span class="property-value">Solidworks, Raspberry Pi, Python, 3D Printing</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">My Role</span>
+          <span class="property-value">Hardware prototyping, light testing, Raspberry Pi integration</span>
+        </div>
+        <div class="property-row">
+          <span class="property-label">Team</span>
+          <span class="property-value">Group Project @ TU Delft</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="project-content">
+
+        <!-- Overview poster — one image tells the whole story -->
+        <figure class="content-figure">
+          <img src="../images/projects/muna/overview.png" alt="MUNA project overview">
+        </figure>
+
+        <h2>Background</h2>
+        <p>In Cameroon, only ~4% of women have been screened for cervical cancer. Healthcare workers want to use AI-assisted diagnosis, but existing equipment produces poor image quality — high noise, strong reflections, and reliance on cell phones for image capture.</p>
+        <p><strong>How can we redesign the speculum</strong> to help physicians capture high-quality cervical images for both diagnosis and AI dataset building?</p>
+
+        <h2>System Vision</h2>
+        <p>MUNA is a gun-shaped scanning device with dual cameras, integrated LED lighting, and a dedicated screen — replacing the unhygienic phone-based workflow with a purpose-built medical tool.</p>
+        <figure class="content-figure">
+          <img src="../images/projects/muna/system-vision.png" alt="MUNA system architecture">
+        </figure>
+
+        <h2>Design Iteration</h2>
+        <p>Multiple rounds of handle and camera-head prototyping — from shape exploration to functional refinement.</p>
+
+        <!-- Two-column: handle + camera head iterations (smaller, side by side) -->
+        <div class="content-gallery">
+          <figure class="content-figure">
+            <img src="../images/projects/muna/handle-iteration.png" alt="Handle design iterations">
+            <figcaption>Handle iterations — ergonomic refinement</figcaption>
+          </figure>
+          <figure class="content-figure">
+            <img src="../images/projects/muna/camera-iteration.png" alt="Camera head iterations">
+            <figcaption>Camera head iterations — precision fit in limited space</figcaption>
+          </figure>
+        </div>
+
+        <h2>Light Engineering</h2>
+        <p>A key technical challenge: reducing tissue-fluid reflections while maintaining sufficient illumination. We tested diffusion materials and polarizer configurations, then optimized the light source position inside the speculum.</p>
+
+        <div class="content-gallery">
+          <figure class="content-figure">
+            <img src="../images/projects/muna/light-test.png" alt="Light diffusion and polarizer testing">
+            <figcaption>Polarizer vs. diffusion paper — reflection comparison</figcaption>
+          </figure>
+          <figure class="content-figure">
+            <img src="../images/projects/muna/light-position.png" alt="Light position optimization">
+            <figcaption>Optimal light position: middle of the speculum</figcaption>
+          </figure>
+        </div>
+
+        <h2>Final Design</h2>
+
+        <figure class="content-figure">
+          <img src="../images/projects/muna/final-exploded.png" alt="MUNA exploded view render">
+          <figcaption>Exploded view — Solidworks render</figcaption>
+        </figure>
+
+        <figure class="content-figure">
+          <img src="../images/projects/muna/final-internal.png" alt="MUNA internal structure">
+          <figcaption>Internal structure — dual camera, button interface, waterproof design</figcaption>
+        </figure>
+
+        <h2>Working Prototype</h2>
+        <p>Functional prototype built with Raspberry Pi, achieving the full pipeline: button control, dual-camera switching, LED lighting, and live display on screen.</p>
+
+        <figure class="content-figure">
+          <img src="../images/projects/muna/prototype.png" alt="Working prototype">
+          <figcaption>3D-printed shell + Raspberry Pi functional prototype</figcaption>
+        </figure>
+
+        <!-- YouTube embed -->
+        <div class="embed-container">
+          <iframe src="https://www.youtube.com/embed/wTUObji5i2A" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p style="margin-top: 0.5rem;">
+          <a href="https://www.youtube.com/watch?v=wTUObji5i2A" target="_blank" class="inline-link">Watch full demo on YouTube &rarr;</a>
+        </p>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="project-nav">
+        <a href="emotiv-chat.html" class="project-nav-link prev">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">EmotivChat</span>
+        </a>
+        <a href="#" class="project-nav-link next" style="visibility: hidden;">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">Coming soon</span>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+
+  <footer class="footer" style="background:#050505; border-top:1px solid rgba(255,255,255,0.06); padding:2rem 0;">
+    <div style="text-align:center;">
+      <span style="font-size:0.65rem; color:rgba(255,255,255,0.15); letter-spacing:0.1em;">&copy; 2026 Ziyu Wei</span>
+    </div>
+  </footer>
+
+</body>
+</html>
