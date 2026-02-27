@@ -63,10 +63,10 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
   padding: 0 1.5rem;
 }
 
-/* Work section gets a wider column for large project cards */
+/* Work section gets a much wider column for large project cards */
 .work .section-column {
-  max-width: 960px;
-  padding: 0 2.5rem;
+  max-width: 85vw;
+  padding: 0 4rem;
 }
 
 .content-box {
@@ -392,8 +392,8 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin: 2rem 0;
+  gap: 24px;
+  margin: 2.5rem 0;
 }
 
 .project-item {
@@ -473,7 +473,7 @@ main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
   .hero__social { display: none; }
 
   .section-column { padding: 0 1.25rem; }
-  .work .section-column { max-width: 100%; padding: 0 1.25rem; }
+  .work .section-column { max-width: 100%; padding: 0 1rem; }
 }
 
 @media (max-width: 576px) {
