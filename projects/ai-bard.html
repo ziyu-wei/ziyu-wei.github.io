@@ -64,13 +64,32 @@
           <div class="callout-text">This project is still in progress. Results described below are expected outcomes.</div>
         </div>
 
+        <h2>Introduction</h2>
+        <p>目前在矽递科技的实习项目，矽递是 NVIDIA Jetson 平台的核心合作伙伴。</p>
+        <p>我负责的是柴火基地车项目——一台移动 AI 实验室车。我的工作是给这台车搭建一套多模态交互系统，包括语音对话、机器人交互和多传感器环境感知。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/ai-bard/intro.png" alt="柴火基地车项目">
+        </figure>
+
         <h2>Situation</h2>
-        <p>在 Seeed Studio 的智能房车（Chaihuo MCV）项目中，团队希望将开源 AI Agent（OpenClaw）与物理机器人（Reachy Mini）和车载智能家居系统（Home Assistant）打通，打造一个具备"具身智能"的 RV 智能助手——让 AI 不再只是屏幕上的对话框，而是一个能看、能听、能动、能主动感知环境的物理存在。</p>
+        <p>在 Seeed Studio 的柴火基地车项目中，团队希望将开源 AI Agent（OpenClaw）与物理机器人（Reachy Mini）和车载智能家居系统（Home Assistant）打通。</p>
+        <p>打造一个具备"具身智能"的 RV 智能助手——让 AI 不再只是屏幕上的对话框，而是一个能看、能听、能动、能主动感知环境的物理存在。</p>
+        <figure class="content-figure">
+          <img src="../images/projects/ai-bard/situation.png" alt="系统架构">
+        </figure>
 
         <h2>Task</h2>
         <p>负责探索并搭建初步 Demo 验证系统的架构：</p>
-        <p>将 OpenClaw 作为 AI 决策大脑部署在 Jetson 边缘设备上，连接 Reachy Mini 机器人作为交互终端，并接入房车内的 Home Assistant 智能家居生态，实现语音驱动的环境感知与设备控制闭环。</p>
-        <p>探索创新交互场景，如让机器人主动观察用户日常并生成第一人称视角的"AI 旅行日记"。</p>
+        <ul>
+          <li>将 OpenClaw 作为 AI 决策大脑部署在 Jetson 边缘设备上</li>
+          <li>连接 Reachy Mini 机器人作为交互终端</li>
+          <li>接入房车内的 Home Assistant 智能家居生态</li>
+          <li>实现语音驱动的环境感知与设备控制闭环</li>
+          <li>探索创新交互场景，如让机器人主动观察用户日常并生成第一人称视角的"AI 旅行日记"</li>
+        </ul>
+        <figure class="content-figure">
+          <img src="../images/projects/ai-bard/task.png" alt="任务架构">
+        </figure>
 
         <h2>Action</h2>
         <ul>
@@ -78,6 +97,10 @@
           <li><strong>🚧 进行中：</strong>设计"AI 日记"功能的产品方案——通过定时拍照、环境音采集与持久化记忆，让机器人在一天结束时自动生成带有个人视角的旅途日记。</li>
           <li><strong>🚧 进行中：</strong>为智能家居控制编写 OpenClaw Skill，实现通过自然语言控制车内灯光、空调等设备。</li>
         </ul>
+        <figure class="content-figure">
+          <img src="../images/projects/ai-bard/butler.gif" alt="AI 小管家交互演示">
+        </figure>
+        <p><a href="https://www.xiaohongshu.com/explore/69a910010000000022030ee4?app_platform=ios&app_version=9.19.4&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBpHVH22_-oUjaNdQlhNGXuKzxL2QY9GIM31tBZ9zwpvE=&author_share=1&xhsshare=WeixinSession&shareRedId=N0xGOTxJNz02NzUyOTgwNjY0OTc5RjdN&apptime=1772763937&share_id=5adc190921074cee9b5abf828b62daa8" target="_blank" class="inline-link">在小红书查看视频 &rarr;</a></p>
 
         <h2>Expected Result</h2>
         <ul>
