@@ -73,13 +73,28 @@
         </figure>
 
         <h2>Lofi UI Workflow</h2>
+        <p>核心交互机制：呼吸节奏决定花朵命运</p>
+        <ul>
+          <li><strong>缓慢呼气</strong> → 花朵稳定生长，从花苞到绽放</li>
+          <li><strong>呼吸过快/过急</strong> → 花瓣被吹散，需要重新开始</li>
+          <li><strong>完成一朵花</strong> → 收入"你的花园"，可积累不同花朵</li>
+        </ul>
+        <p>这一机制的设计意图：引导用户主动关注呼吸节奏。通过"花瓣飘散"这一自然交互，让用户自然开始缓慢、有节奏的呼吸方式。</p>
         <figure class="content-figure">
           <img src="../images/projects/breath-flow/workflow.png" alt="UI Workflow">
         </figure>
 
         <h2>Working Prototype</h2>
 
-        <p>选择拾音传感器，使用 Arduino 追踪呼吸声音变化</p>
+        <h3>Sensor Selection</h3>
+        <p>本项目理想的传感方案是气流传感器（直接测量呼吸气流量，可获取连续波形）。受限于春节期间硬件采购周期，选择声音传感器作为快速验证方案：</p>
+        <ul>
+          <li><strong>气流传感器（最好）：</strong>检测双向气流，连续信号，精度高</li>
+          <li><strong>胸带式呼吸带：</strong>可测呼吸周期，但相较于气流传感器精度更低</li>
+          <li><strong>声音传感器（当前方案）：</strong>做二值判断（阈值&gt;30 为呼气），但最快跑通链路</li>
+        </ul>
+
+        <p>拾音传感器，使用 Arduino 追踪呼吸声音变化</p>
         <figure class="content-figure">
           <img src="../images/projects/breath-flow/data1.gif" alt="Arduino sensor data tracking">
           <figcaption>Arduino 拾音传感器追踪呼吸数据</figcaption>
@@ -100,6 +115,16 @@
             <img src="../images/projects/breath-flow/unity2.gif" alt="Unity final effect">
           </figure>
         </div>
+
+        <h2>Reflection &amp; Next Steps</h2>
+        <p>这是一个 1 周的快速技术验证项目，也是我第一次使用 Unity 开发 VR 应用。主要验证了从物理传感器 → Unity Shader → PICO VR 头显的完整技术链路。</p>
+        <p>如继续迭代：</p>
+        <ol>
+          <li>替换为气流传感器，获取连续呼吸曲线，实现 Shader 参数的平滑映射</li>
+          <li>加入呼吸周期节律分析，系统可反向引导用户调整呼吸节奏，形成 biofeedback 闭环</li>
+          <li>实现 Lofi UI 中设计的完整流程（引导、失败状态、花园收集）</li>
+          <li>设计对照实验验证"VR 呼吸交互是否真的促进放松"</li>
+        </ol>
 
       </div>
 
